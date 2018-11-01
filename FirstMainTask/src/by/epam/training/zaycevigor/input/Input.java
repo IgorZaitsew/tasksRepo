@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Игорь
+ * @author Igor Zaycev
  */
 public class Input {
 

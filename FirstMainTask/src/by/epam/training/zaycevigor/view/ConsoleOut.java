@@ -9,12 +9,22 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Игорь
+ * @author Igor Zaycev
  */
 public class ConsoleOut {
+
     private static Logger log = Logger.getLogger(ConsoleOut.class);
+
     public static void doubleOut(double number, String text) {
         System.out.println(text + number);
+    }
+
+    public static void boolIntOut(int number, String textIfTrue, String textIfFalse) {
+        if (number != 0) {
+            System.out.println(textIfTrue + number);
+        } else {
+            System.out.println(textIfFalse);
+        }
     }
 
     public static void arrayDoubleOut(double[] array, String text) {
@@ -35,4 +45,5 @@ public class ConsoleOut {
             log.info(textIfFalse);
         }
     }
+
 }

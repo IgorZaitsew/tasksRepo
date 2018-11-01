@@ -7,7 +7,7 @@ package by.epam.training.zaycevigor.logic;
 
 /**
  *
- * @author Игорь
+ * @author Igor Zaycev
  */
 public class ArraySort {
 

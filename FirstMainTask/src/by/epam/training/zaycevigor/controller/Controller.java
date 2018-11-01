@@ -10,6 +10,7 @@ import static by.epam.training.zaycevigor.view.ConsoleOut.*;
 import static by.epam.training.zaycevigor.input.Input.randomDoubleIn;
 import static by.epam.training.zaycevigor.logic.ArraySort.bubbleSort;
 import by.epam.training.zaycevigor.logic.MathCalculator;
+import static by.epam.training.zaycevigor.logic.SearchClass.linearSearch;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,13 +39,20 @@ public class Controller {
         calculator.setArray(array);
 
         arrayDoubleOut(array, BASIC_ARRAY);
+        arrayDoubleOut(calculator.reverse(),REVERSE_ARRAY);
         doubleOut(calculator.minFinder(), MIN);
         doubleOut(calculator.maxFinder(), MAX);
         doubleOut(calculator.average(), AVERAGE);
         doubleOut(calculator.geomMean(), GEOM_MEAN);
         boolOut(calculator.isSorted(), SORT_TRUE, SORT_FALSE);
         arrayDoubleOut(bubbleSort(array), SORTED_ARRAY);
-        boolOut(calculator.isSorted(), SORT_TRUE, SORT_FALSE);
+        
+//        boolOut(calculator.isSorted(), SORT_TRUE, SORT_FALSE);
+//        boolIntOut(linearSearch(array,5),DESIRED_ELEMENT,NO_DESIRED_ELEMENT);
+//
+//          Impossible to write an search algorithm for double array
 
+
+        
     }
 }
