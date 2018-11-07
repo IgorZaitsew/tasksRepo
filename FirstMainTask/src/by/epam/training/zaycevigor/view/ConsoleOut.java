@@ -5,18 +5,22 @@
  */
 package by.epam.training.zaycevigor.view;
 
-import org.apache.log4j.Logger;
+import static by.epam.training.zaycevigor.consts.Constants.ROUNDING_VALUE;
+import by.epam.training.zaycevigor.logic.Vector;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
-/**
- *
- * @author Igor Zaycev
- */
 public class ConsoleOut {
 
-    private static Logger log = Logger.getLogger(ConsoleOut.class);
+    static final DecimalFormatSymbols OTHER_SYMBOLS = new DecimalFormatSymbols(Locale.US);
+    static DecimalFormat df = new DecimalFormat("#.00" + ROUNDING_VALUE, OTHER_SYMBOLS);
 
     public static void doubleOut(double number, String text) {
-        System.out.println(text + number);
+        df.setRoundingMode(RoundingMode.CEILING);
+        System.out.println(text + df.format(number));
+
     }
 
     public static void boolIntOut(int number, String textIfTrue, String textIfFalse) {
@@ -25,25 +29,25 @@ public class ConsoleOut {
         } else {
             System.out.println(textIfFalse);
         }
+
     }
 
-    public static void arrayDoubleOut(double[] array, String text) {
-        System.out.println(text);
-        log.info(text);
-        for (double i : array) {
-            System.out.println(i);
-            log.info(i);
-        }
+//    public static void vectorOut(Vector vector, String text) {
+//        System.out.println(text + vector.toString());
+//
+//    }
+    public static void stringOut(String firstString, String secondString) {
+        System.out.println(firstString + secondString);
     }
 
     public static void boolOut(boolean condition, String textIfTrue, String textIfFalse) {
+
         if (condition) {
             System.out.println(textIfTrue);
-            log.info(textIfTrue);
         } else {
             System.out.println(textIfFalse);
-            log.info(textIfFalse);
         }
+
     }
 
 }

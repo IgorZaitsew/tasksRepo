@@ -6,18 +6,18 @@
 package by.epam.training.zaycevigor.controller;
 
 import static by.epam.training.zaycevigor.consts.Constants.*;
+import by.epam.training.zaycevigor.exceptions.VectorException;
 import static by.epam.training.zaycevigor.view.ConsoleOut.*;
 import static by.epam.training.zaycevigor.input.Input.randomDoubleIn;
-import static by.epam.training.zaycevigor.logic.ArraySort.bubbleSort;
-import by.epam.training.zaycevigor.logic.MathCalculator;
+import static by.epam.training.zaycevigor.input.Input.randomDoubleVectorIn;
+import static by.epam.training.zaycevigor.logic.VectorSorter.bubbleSort;
+import static by.epam.training.zaycevigor.logic.MathCalculator.*;
 import static by.epam.training.zaycevigor.logic.SearchClass.linearSearch;
-import java.io.BufferedReader;
+import by.epam.training.zaycevigor.logic.Vector;
+import static by.epam.training.zaycevigor.view.LogOut.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -25,34 +25,53 @@ import org.apache.log4j.Logger;
  */
 public class Controller {
 
-    public static void main(String[] args) {
-        double[] array=null;
+    public static void main(String[] args) throws VectorException {
+        Vector vector;
+        Scanner n = null;
+
         try {
-             Scanner n = new Scanner(new File("E:\\GitFolder\\MainTask1\\ArrayDimension.txt"));
-            array = randomDoubleIn(n.nextInt(), 2, 4);
+            n = new Scanner(new File("E:\\GitFolder\\MainTask1\\ArrayDimension.txt"));
+
         } catch (IOException e) {
-             System.out.println( "IOException" );
+            System.out.println("IOException");
         }
-        
-        MathCalculator calculator = new MathCalculator();
-       
-        calculator.setArray(array);
 
-        arrayDoubleOut(array, BASIC_ARRAY);
-        arrayDoubleOut(calculator.reverse(),REVERSE_ARRAY);
-        doubleOut(calculator.minFinder(), MIN);
-        doubleOut(calculator.maxFinder(), MAX);
-        doubleOut(calculator.average(), AVERAGE);
-        doubleOut(calculator.geomMean(), GEOM_MEAN);
-        boolOut(calculator.isSorted(), SORT_TRUE, SORT_FALSE);
-        arrayDoubleOut(bubbleSort(array), SORTED_ARRAY);
-        
-//        boolOut(calculator.isSorted(), SORT_TRUE, SORT_FALSE);
-//        boolIntOut(linearSearch(array,5),DESIRED_ELEMENT,NO_DESIRED_ELEMENT);
-//
-//          Impossible to write an search algorithm for double array
+        int size = n.nextInt();
+        vector = randomDoubleVectorIn(2, 4, size);
 
+        stringOut(BASIC_ARRAY, vector.toString());
+        stringLogOut(BASIC_ARRAY, vector);
 
-        
+        doubleOut(minFinder(vector), MIN);
+        doubleLogOut(minFinder(vector), MIN);
+
+        doubleOut(maxFinder(vector), MAX);
+        doubleLogOut(maxFinder(vector), MAX);
+
+        doubleOut(average(vector), AVERAGE);
+        doubleLogOut(average(vector), AVERAGE);
+
+        doubleOut(geomMean(vector), GEOM_MEAN);
+        doubleLogOut(geomMean(vector), GEOM_MEAN);
+
+        boolOut(isSorted(vector), SORT_TRUE, SORT_FALSE);
+        boolLogOut(isSorted(vector), SORT_TRUE, SORT_FALSE);
+
+        reverse(vector);
+        stringOut(REVERSE_ARRAY, vector.toString());
+        stringLogOut(REVERSE_ARRAY, vector);
+        reverse(vector);
+
+        bubbleSort(vector);
+        stringOut(SORTED_ARRAY, vector.toString());
+        stringLogOut(SORTED_ARRAY, vector);
+
+        boolOut(isSorted(vector), SORT_TRUE, SORT_FALSE);
+        boolLogOut(isSorted(vector), SORT_TRUE, SORT_FALSE);
+
+        boolIntOut(linearSearch(vector, 2.5D), DESIRED_ELEMENT, NO_DESIRED_ELEMENT);
+        boolIntLogOut(linearSearch(vector, 2.5D), DESIRED_ELEMENT, NO_DESIRED_ELEMENT);
+
+        indent();
     }
 }

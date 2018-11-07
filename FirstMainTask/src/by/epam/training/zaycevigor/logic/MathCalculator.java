@@ -5,33 +5,24 @@
  */
 package by.epam.training.zaycevigor.logic;
 
+import by.epam.training.zaycevigor.exceptions.VectorException;
+
 public class MathCalculator {
 
-    private double array[];
-    private int count = 0;
+    public static void reverse(Vector vector) throws VectorException {
+        int size = vector.length();
 
-    public void setArray(double array[]) {
-        this.array = array;
-        count = array.length;
-    }
-
-    public double[] reverse() {
-
-        double[] reversedArray = array;
-
-        for (int i = 0; i < count / 2; i++) {
-            reversedArray[count - 1 - i] += reversedArray[i];
-            reversedArray[i] = reversedArray[count - 1 - i] - reversedArray[i];
-            reversedArray[count - 1 - i] -= reversedArray[i];
+        for (int i = 0; i < size / 2; i++) {
+            vector.transposition(i, size - 1 - i);
         }
 
-        return reversedArray;
     }
 
-    public double maxFinder() {
-        double max = array[0];
+    public static double maxFinder(Vector vector) throws VectorException {
 
-        for (double i : array) {
+        double max = vector.number(0);
+
+        for (double i : vector.getVector()) {
             if (max < i) {
                 max = i;
             }
@@ -40,10 +31,10 @@ public class MathCalculator {
         return max;
     }
 
-    public double minFinder() {
-        double min = array[0];
+    public static double minFinder(Vector vector) throws VectorException {
+        double min = vector.number(0);
 
-        for (double i : array) {
+        for (double i : vector.getVector()) {
             if (min > i) {
                 min = i;
             }
@@ -52,33 +43,33 @@ public class MathCalculator {
         return min;
     }
 
-    public double average() {
+    public static double average(Vector vector) throws VectorException {
         double averageValue = 0;
 
-        for (double i : array) {
+        for (double i : vector.getVector()) {
             averageValue += i;
         }
 
-        averageValue /= count;
+        averageValue /= vector.length();
         return averageValue;
     }
 
-    public double geomMean() {
+    public static double geomMean(Vector vector) throws VectorException {
         double geomMeanValue = 0;
 
-        for (double i : array) {
+        for (double i : vector.getVector()) {
             geomMeanValue += Math.log(i);
         }
 
-        geomMeanValue = Math.exp(geomMeanValue / count);
+        geomMeanValue = Math.exp(geomMeanValue / vector.length());
         return geomMeanValue;
     }
 
-    public boolean isSorted() {
+    public static boolean isSorted(Vector vector) throws VectorException {
         boolean sortStatus = true;
-        for (int i = 1; i < count; i++) {
+        for (int i = 1; i < vector.length(); i++) {
 
-            if (array[i] < array[i - 1]) {
+            if (vector.number((i)) < vector.number(i - 1)) {
                 sortStatus = false;
                 break;
             }
@@ -88,4 +79,51 @@ public class MathCalculator {
         return sortStatus;
     }
 
+    public static int localMax(Vector vector) throws VectorException {
+
+        for (int i = 0; i < vector.length(); i++) {
+
+            if (i > 0 && i < vector.length() - 1) {
+                if (vector.number(i) > vector.number(i - 1)
+                        && vector.number(i) > vector.number(i + 1)) {
+                    return i + 1;
+                }
+            } else if (i == 0) {
+                if (vector.number(i) > vector.number(i + 1)) {
+                    return i + 1;
+                }
+
+            } else {
+                if (vector.number(i) > vector.number(i - 1)) {
+                    return i + 1;
+                }
+            }
+
+        }
+        return 0;
+    }
+    
+     public static int localMin(Vector vector) throws VectorException {
+
+        for (int i = 0; i < vector.length(); i++) {
+
+            if (i > 0 && i < vector.length() - 1) {
+                if (vector.number(i) < vector.number(i - 1)
+                        && vector.number(i) < vector.number(i + 1)) {
+                    return i + 1;
+                }
+            } else if (i == 0) {
+                if (vector.number(i) < vector.number(i + 1)) {
+                    return i + 1;
+                }
+
+            } else {
+                if (vector.number(i) < vector.number(i - 1)) {
+                    return i + 1;
+                }
+            }
+
+        }
+        return 0;
+    }
 }

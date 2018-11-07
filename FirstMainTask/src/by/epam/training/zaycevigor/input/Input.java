@@ -5,6 +5,9 @@
  */
 package by.epam.training.zaycevigor.input;
 
+import static by.epam.training.zaycevigor.consts.Constants.ROUNDING_VALUE;
+import by.epam.training.zaycevigor.exceptions.VectorException;
+import by.epam.training.zaycevigor.logic.Vector;
 import java.util.Random;
 
 /**
@@ -13,17 +16,29 @@ import java.util.Random;
  */
 public class Input {
 
-    public static double[] randomDoubleIn
-        (int size, double lowerCase, double upperCase) {
-            
+    public static Vector randomDoubleVectorIn(double lowerCase, double upperCase, int size) throws VectorException {
+        Vector vector = new Vector(size);
         Random random = new Random();
-        double[] array = new double[size];
+        double number;
+        String format = "1" + ROUNDING_VALUE;
 
         for (int i = 0; i < size; i++) {
-         
-            array[i]=lowerCase+random.nextDouble()*(upperCase-lowerCase);
+            number = lowerCase + random.nextDouble() * (upperCase - lowerCase);
+            number = (double) Math.round(number * Integer.parseInt(format)) / Integer.parseInt(format);
+            vector.setNumber(number, i);
         }
-        
-        return array;
+
+        return vector;
+    }
+
+    public static double randomDoubleIn(double lowerCase, double upperCase) {
+        double number;
+        Random random = new Random();
+        String format = "1" + ROUNDING_VALUE;
+
+        number = lowerCase + random.nextDouble() * (upperCase - lowerCase);
+        number = (double) Math.round(number * Integer.parseInt(format)) / Integer.parseInt(format);
+
+        return number;
     }
 }
