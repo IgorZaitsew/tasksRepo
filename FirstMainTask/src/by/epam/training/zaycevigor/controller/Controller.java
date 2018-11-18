@@ -9,11 +9,13 @@ import static by.epam.training.zaycevigor.consts.Constants.*;
 import by.epam.training.zaycevigor.exceptions.VectorException;
 import static by.epam.training.zaycevigor.view.ConsoleOut.*;
 import static by.epam.training.zaycevigor.input.Input.randomDoubleIn;
-import static by.epam.training.zaycevigor.input.Input.randomDoubleVectorIn;
-import static by.epam.training.zaycevigor.logic.VectorSorter.bubbleSort;
-import static by.epam.training.zaycevigor.logic.MathCalculator.*;
-import static by.epam.training.zaycevigor.logic.SearchClass.linearSearch;
-import by.epam.training.zaycevigor.logic.Vector;
+import static by.epam.training.zaycevigor.input.Parser.getStringFromFile;
+import static by.epam.training.zaycevigor.input.Validator.sizeValidate;
+import static by.epam.training.zaycevigor.input.VectorCreator.createVector;
+import static by.epam.training.zaycevigor.model.logic.VectorSorter.bubbleSort;
+import static by.epam.training.zaycevigor.model.logic.MathCalculator.*;
+import static by.epam.training.zaycevigor.model.logic.SearchClass.linearSearch;
+import by.epam.training.zaycevigor.model.entity.Vector;
 import static by.epam.training.zaycevigor.view.LogOut.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,18 +28,10 @@ import java.util.Scanner;
 public class Controller {
 
     public static void main(String[] args) throws VectorException {
-        Vector vector;
-        Scanner n = null;
 
-        try {
-            n = new Scanner(new File("E:\\GitFolder\\MainTask1\\ArrayDimension.txt"));
-
-        } catch (IOException e) {
-            System.out.println("IOException");
-        }
-
-        int size = n.nextInt();
-        vector = randomDoubleVectorIn(2, 4, size);
+        int size = sizeValidate(getStringFromFile(FILE_PATH));
+        Vector vector = new Vector(size);
+        createVector(vector,  2, 5);
 
         stringOut(BASIC_ARRAY, vector.toString());
         stringLogOut(BASIC_ARRAY, vector);

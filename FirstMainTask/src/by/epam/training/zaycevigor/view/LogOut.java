@@ -6,7 +6,7 @@
 package by.epam.training.zaycevigor.view;
 
 import static by.epam.training.zaycevigor.consts.Constants.ROUNDING_VALUE;
-import by.epam.training.zaycevigor.logic.Vector;
+import by.epam.training.zaycevigor.model.entity.Vector;
 import static by.epam.training.zaycevigor.view.ConsoleOut.df;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;

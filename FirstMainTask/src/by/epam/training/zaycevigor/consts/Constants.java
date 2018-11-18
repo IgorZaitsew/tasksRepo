@@ -22,5 +22,6 @@ public class Constants {
     public static final String REVERSE_ARRAY = "\nReversed array is: \n";
     public static final String DESIRED_ELEMENT = "\nAn index of desired element is: ";
     public static final String NO_DESIRED_ELEMENT = "\nThere is no element with that value in given array";
-    public static final String ROUNDING_VALUE ="0";
+    public static final String ROUNDING_VALUE = "0";
+    public static final String FILE_PATH = "E:\\GitFolder\\MainTask1\\ArrayDimension.txt";
 }

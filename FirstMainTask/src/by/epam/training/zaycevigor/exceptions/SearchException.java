@@ -5,7 +5,7 @@
  */
 package by.epam.training.zaycevigor.exceptions;
 
-import by.epam.training.zaycevigor.logic.Vector;
+import by.epam.training.zaycevigor.model.entity.Vector;
 
 /**
  *

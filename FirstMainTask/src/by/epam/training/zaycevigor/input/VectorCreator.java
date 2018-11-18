@@ -8,29 +8,17 @@ package by.epam.training.zaycevigor.input;
 import by.epam.training.zaycevigor.exceptions.VectorException;
 import static by.epam.training.zaycevigor.input.Input.randomDoubleIn;
 import by.epam.training.zaycevigor.model.entity.Vector;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Игорь
  */
-public class InputTest {
-    private Vector vector;
-    
-    public InputTest() {
-        vector=new Vector(5);
-    }
-    
-    @Test
-    public void randomDoubleInTest() throws VectorException{
-        
-        for(int i=0;i<vector.length();i++){
-            vector.setNumber(randomDoubleIn(2,5),i);
-        }
-        
-        System.out.println(vector.toString());
-    }
+public class VectorCreator {
 
-   
+    public static void createVector(Vector vector, int lowerCase, int upperCase) throws VectorException {
+        for (int i = 0; i < vector.length(); i++) {
+            vector.setNumber(randomDoubleIn(lowerCase, upperCase), i);
+        }
+
+    }
 }
